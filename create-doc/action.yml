@@ -32,6 +32,9 @@ runs:
               echo "${output}" > documentation/files/${filename}.md
               echo "${file} processed"
             fi
+              cd documentation/files
+              ls
+              cd ../..
           done
         shell: bash
 
