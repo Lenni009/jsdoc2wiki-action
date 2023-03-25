@@ -26,7 +26,8 @@ runs:
         run: |
           for file in $(find . -name "*.js")
           do
-            jsdoc2md "${file}" | sponge documentation/${file}.md
+            filename=$(basename "${file}")
+            jsdoc2md "${file}" | sponge documentation/${filename}.md
           done
         shell: bash
 
