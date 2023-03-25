@@ -8,26 +8,32 @@ runs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+        shell: bash
 
       - name: Setup Env
         run: |
           npm install -g documentation
           touch lintOut.txt
+        shell: bash
 
       - name: Lint JSDoc Comments
         run: |
           documentation lint ./**/*.js > lintOut.txt
+        shell: bash
 
       - name: Check if lintOut.txt is empty
         run: |
           if [ -s lintOut.txt ]; then # check if not empty
             exit 1
           fi
+        shell: bash
       # have an eye on https://github.com/actions/runner/issues/662 to avoid the if statements
       - if: failure()
         uses: mshick/add-pr-comment@v2
         with:
           message-path: lintOut.txt
+        shell: bash
 
       - if: failure()
         run: exit 1
+        shell: bash
