@@ -28,8 +28,9 @@ runs:
             filename=$(basename "${file}")
             output=$(jsdoc2md "${file}")
             if [ -s "$output" ]; then
-              touch documentation/${filename}.md
-              echo "$output" > documentation/files/${filename}.md
+              touch documentation/files/${filename}.md
+              echo "${output}" > documentation/files/${filename}.md
+              echo "${output} processed"
             fi
           done
         shell: bash
