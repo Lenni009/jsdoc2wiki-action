@@ -33,7 +33,7 @@ runs:
               echo "${file} processed"
             fi
           done
-          ls
+          ls -d documentation/files
         shell: bash
 
       - name: Upload Documentation to Wiki
