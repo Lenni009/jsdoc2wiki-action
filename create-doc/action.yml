@@ -29,7 +29,7 @@ runs:
             output=$(jsdoc2md "${file}")
             if [ -s "$output" ]; then
               touch documentation/${filename}.md
-              echo "$output" > documentation/${filename}.md
+              echo "$output" > documentation/files/${filename}.md
             fi
           done
         shell: bash
