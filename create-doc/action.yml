@@ -1,0 +1,28 @@
+name: Generate JSDoc
+description: Generates markdown files from JSDoc comments and uploads them to the repo's wiki
+
+runs:
+  using: 'composite'
+  steps:
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Setup Env
+        run: |
+          npm install -g jsdoc jsdoc-to-markdown
+          mkdir documentation
+
+      - name: Build Documentation Files
+        run: |
+          for file in $(find . -name "*.js")
+          do
+            jsdoc2md "${file}" > documentation/${file}.md
+          done
+      - name: Upload Documentation to Wiki
+        uses: SwiftDocOrg/github-wiki-publish-action@v1
+        with:
+          path: "documentation"
+        env:
+          GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
