@@ -1,0 +1,10 @@
+name: Generate JSDoc
+description: Generates markdown files from JSDoc comments
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+      
+branding:
+  icon: "box"
+  color: "green"
