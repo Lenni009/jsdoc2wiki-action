@@ -16,7 +16,8 @@ runs:
 
       - name: Setup Env
         run: |
-          sudo apt update && apt install moreutils -y
+          sudo apt update
+          sudo apt install moreutils -y
           npm install -g jsdoc jsdoc-to-markdown
           mkdir documentation
         shell: bash
