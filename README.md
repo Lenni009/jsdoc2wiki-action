@@ -23,31 +23,6 @@ How to generate a key:
 ### Usage
 ```yml
 on:
-  pull_request:
-    types: [opened, synchronize]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    permissions:
-      pull-requests: write
-      contents: write
-
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
-
-      - name: Lint JSDoc Comments
-        uses: Lenni009/jsdoc2wiki-action/lint-doc@main
-```
-
-## lint-doc
-This action is intended to be run on every pull request to your main branch. It will lint the JSDoc comments in your code and return any errors in a comment on the PR. Errors and warnings also cause the action to fail, so the PR can be blocked from being merged.
-
-### Usage
-```yml
-on:
   push:
     branches: ['main']
 
@@ -70,4 +45,29 @@ jobs:
         uses: Lenni009/jsdoc2wiki-action/create-doc@main
         with:
           secret: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+```
+
+## lint-doc
+This action is intended to be run on every pull request to your main branch. It will lint the JSDoc comments in your code and return any errors in a comment on the PR. Errors and warnings also cause the action to fail, so the PR can be blocked from being merged.
+
+### Usage
+```yml
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Lint JSDoc Comments
+        uses: Lenni009/jsdoc2wiki-action/lint-doc@main
 ```
