@@ -16,6 +16,7 @@ runs:
 
       - name: Setup Env
         run: |
+          sudo apt update && apt install moreutils -y
           npm install -g jsdoc jsdoc-to-markdown
           mkdir documentation
         shell: bash
@@ -24,7 +25,7 @@ runs:
         run: |
           for file in $(find . -name "*.js")
           do
-            jsdoc2md "${file}" > documentation/${file}.md
+            jsdoc2md "${file}" | sponge documentation/${file}.md
           done
         shell: bash
 
