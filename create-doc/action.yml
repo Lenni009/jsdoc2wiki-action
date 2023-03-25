@@ -3,8 +3,8 @@ description: Generates markdown files from JSDoc comments and uploads them to th
 
 inputs:
   secret:
-  description: "Repo access token"
-  required: true
+    description: "Repo access token"
+    required: true
 
 runs:
   using: 'composite'
