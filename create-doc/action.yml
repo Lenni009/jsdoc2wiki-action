@@ -30,9 +30,10 @@ runs:
               filename=$(basename "${file}")
               touch documentation/files/${filename}.md
               echo "${output}" > documentation/files/${filename}.md
+              echo "${file} processed"
             fi
-              echo "${output} processed"
           done
+          ls
         shell: bash
 
       - name: Upload Documentation to Wiki
