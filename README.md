@@ -24,7 +24,7 @@ How to generate a key:
 ```yml
 on:
   pull_request:
-    types: [opened, synchronize, edited]
+    types: [opened, synchronize]
 
 jobs:
   test:
