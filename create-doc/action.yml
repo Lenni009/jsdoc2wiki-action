@@ -18,7 +18,6 @@ runs:
         run: |
           npm install -g jsdoc jsdoc-to-markdown
           mkdir documentation
-          mkdir documentation/files
         shell: bash
 
       - name: Build Documentation Files
