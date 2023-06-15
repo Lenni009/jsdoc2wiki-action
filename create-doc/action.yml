@@ -36,16 +36,16 @@ runs:
           for file in ./!(node_modules)/**/*.@(js|jsx|ts|tsx)
           do
             echo "$file"
-            if [ "$filename" != *.spec.* ] && [ "$filename" != *.test.* ]; then
-              filename=$(basename "${file}")
-              extension="${filename##*.}"
-              if [ "$extension" == js* ]; then
-                output=$(jsdoc2md "${file}")
-              else
-                output=$(jsdoc2md "$file" --configure ./jsdoc2md.json)
-              fi
+            filename=$(basename "${file}")
+            if [ "$filename" == *.spec.* ] || [ "$filename" == *.test.* ]; then
+              continue
             fi
-            
+            extension="${filename##*.}"
+            if [ "$extension" == js* ]; then
+              output=$(jsdoc2md "${file}")
+            else
+              output=$(jsdoc2md "$file" --configure ./jsdoc2md.json)
+            fi
             if [ ! -z "${output}" ]; then
               touch documentation/${filename}.md
               echo "${output}" > documentation/${filename}.md
