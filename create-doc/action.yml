@@ -35,7 +35,7 @@ runs:
           for file in ./!(node_modules)/**/*.{js,jsx,ts,tsx}
           do
             filename=$(basename "${file}")
-            extension="${filename##*.}
+            extension="${filename##*.}"
             if [ "$extension" == js* ]; then
               output=$(jsdoc2md "${file}")
             else
