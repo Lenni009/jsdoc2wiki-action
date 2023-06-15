@@ -37,15 +37,15 @@ runs:
           do
             echo "$file"
             filename=$(basename "${file}")
-            if [ "$filename" == *.spec.* ] || [ "$filename" == *.test.* ]; then
-              continue
+            if [ "$filename" != *.spec.* ] && [ "$filename" != *.test.* ]; then
+              extension="${filename##*.}"
+              if [ "$extension" == js* ]; then
+                output=$(jsdoc2md "${file}")
+              else
+                output=$(jsdoc2md "$file" --configure ./jsdoc2md.json)
+              fi
             fi
-            extension="${filename##*.}"
-            if [ "$extension" == js* ]; then
-              output=$(jsdoc2md "${file}")
-            else
-              output=$(jsdoc2md "$file" --configure ./jsdoc2md.json)
-            fi
+
             if [ ! -z "${output}" ]; then
               touch documentation/${filename}.md
               echo "${output}" > documentation/${filename}.md
