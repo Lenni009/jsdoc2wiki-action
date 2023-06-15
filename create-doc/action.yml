@@ -22,7 +22,7 @@ runs:
 
       - name: Build Documentation Files
         run: |
-          for file in $(find . -name "*.js" -o -name "*.ts")
+          for file in $(find . \( -name \*.js -o -name \*.ts \) )
           do
             output=$(jsdoc2md "${file}")
             if [ ! -z "${output}" ]; then
