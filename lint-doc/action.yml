@@ -16,7 +16,9 @@ runs:
         shell: bash
 
       - name: Lint JSDoc Comments
-        run: documentation lint ./**/*.{js,ts} --shallow > lintOut.txt
+        run: |
+          shopt -s globstar
+          documentation lint ./**/*.{js,ts} --shallow > lintOut.txt
         shell: bash
 
       - name: Check if lintOut.txt is empty
