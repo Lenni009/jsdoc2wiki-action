@@ -18,7 +18,7 @@ runs:
       - name: Lint JSDoc Comments
         run: |
           documentation lint **/*.(js|ts) --shallow > lintOut.txt
-        shell: bash
+        shell: zsh
 
       - name: Check if lintOut.txt is empty
         run: |
