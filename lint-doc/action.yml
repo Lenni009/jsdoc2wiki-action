@@ -16,12 +16,9 @@ runs:
         shell: bash
 
       - name: Lint JSDoc Comments
-        run: |
-          for file in $(find . -name "*.js" -o -name "*.ts")
-          do
-            documentation lint "${file}" --shallow >> lintOut.txt
-            echo "${file} processed"
-          done
+          shopt -s globstar
+          shopt -s extglob
+          documentation lint ./**/*.*(js|ts) --shallow > lintOut.txt
         shell: bash
 
       - name: Check if lintOut.txt is empty
