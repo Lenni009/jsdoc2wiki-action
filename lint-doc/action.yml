@@ -22,7 +22,7 @@ runs:
             documentation lint "${file}" --shallow >> lintOut.txt
             echo "${file} processed"
           done
-          shell: bash
+        shell: bash
 
       - name: Check if lintOut.txt is empty
         run: |
