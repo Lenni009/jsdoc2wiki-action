@@ -11,14 +11,16 @@ runs:
 
       - name: Setup Env
         run: |
+          sudo apt install zsh
           npm install -g documentation
           touch lintOut.txt
         shell: bash
 
       - name: Lint JSDoc Comments
         run: |
+          zsh
           documentation lint **/*.(js|ts) --shallow > lintOut.txt
-        shell: zsh
+        shell: bash
 
       - name: Check if lintOut.txt is empty
         run: |
