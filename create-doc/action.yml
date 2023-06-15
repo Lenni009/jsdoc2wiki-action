@@ -22,7 +22,7 @@ runs:
 
       - name: Build Documentation Files
         run: |
-          find ${dir} -type f \( -iname \*.js -o -iname \*.ts \) | while read fname
+          find . -type f \( -iname \*.js -o -iname \*.ts \) | while read fname
           do
             output=$(jsdoc2md "${file}")
             if [ ! -z "${output}" ]; then
