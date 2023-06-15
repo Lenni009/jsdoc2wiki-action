@@ -15,15 +15,14 @@ runs:
           touch lintOut.txt
         shell: bash
 
-      - name: Glob match
-        uses: tj-actions/glob@v17
-        id: glob
-        with:
-          files: ./**/*.[tj]s
-
       - name: Lint JSDoc Comments
-        run: documentation lint {{ steps.glob.outputs.paths }} --shallow > lintOut.txt
-        shell: bash
+        run: |
+          for file in $(find . -name "*.js" -o -name "*.ts")
+          do
+            documentation lint "${file}" --shallow >> lintOut.txt
+            echo "${file} processed"
+          done
+          shell: bash
 
       - name: Check if lintOut.txt is empty
         run: |
