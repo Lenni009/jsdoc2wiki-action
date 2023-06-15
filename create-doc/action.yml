@@ -29,7 +29,7 @@ runs:
           fi
         shell: bash
 
-      - name: Glob match
+      - name: Gathering Files
         uses: tj-actions/glob@v17
         id: glob
         with:
@@ -39,24 +39,20 @@ runs:
             **/*.ts
             **/*.tsx
             !**/*.test.*
+            !**/*.config.*
             !**/*.spec.*
             !node_modules
 
       - name: Build Documentation Files
         run: |
-          shopt -s globstar
-          shopt -s extglob
           for file in ${{ steps.glob.outputs.paths }}
           do
-            echo "$file"
             filename=$(basename "${file}")
-            if [ "$filename" != *.spec.* ] && [ "$filename" != *.test.* ]; then
-              extension="${filename##*.}"
-              if [ "$extension" == js* ]; then
-                output=$(jsdoc2md "${file}")
-              else
-                output=$(jsdoc2md "$file" --configure ./jsdoc2md.json)
-              fi
+            extension="${filename##*.}"
+            if [ "$extension" == js* ]; then
+              output=$(jsdoc2md "${file}")
+            else
+              output=$(jsdoc2md "$file" --configure ./jsdoc2md.json)
             fi
 
             if [ ! -z "${output}" ]; then
