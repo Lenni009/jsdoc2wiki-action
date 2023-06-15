@@ -22,7 +22,9 @@ runs:
 
       - name: Build Documentation Files
         run: |
-          for file in $(find . -name "*.js")
+          shopt -s globstar
+          shopt -s extglob
+          for file in ./**/*.*(js|ts)
           do
             output=$(jsdoc2md "${file}")
             if [ ! -z "${output}" ]; then
