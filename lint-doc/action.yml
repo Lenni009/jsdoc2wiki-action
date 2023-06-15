@@ -22,7 +22,7 @@ runs:
           files: ./**/*.[tj]s
 
       - name: Lint JSDoc Comments
-        run: documentation lint "${{ steps.glob.outputs.paths }}" --shallow > lintOut.txt
+        run: documentation lint {{ steps.glob.outputs.paths }} --shallow > lintOut.txt
         shell: bash
 
       - name: Check if lintOut.txt is empty
