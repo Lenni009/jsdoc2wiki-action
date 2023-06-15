@@ -16,17 +16,32 @@ runs:
 
       - name: Setup Env
         run: |
-          npm install -g jsdoc jsdoc-to-markdown
+          npm install --save-dev typescript jsdoc-babel @babel/cli @babel/core @babel/preset-env @babel/preset-typescript jsdoc-to-markdown @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread
           mkdir documentation
+        shell: bash
+
+      - name: Check for config
+        run: |
+          if [ ! -e jsdoc2md.json ]
+          then
+            cp $GITHUB_ACTION_PATH/jsdoc2md.json ./
+          fi
         shell: bash
 
       - name: Build Documentation Files
         run: |
-          for file in $(find . -name "*.js")
+          shopt -s globstar
+          shopt -s extglob
+          for file in ./!(node_modules)/**/*.{js,jsx,ts,tsx}
           do
-            output=$(jsdoc2md "${file}")
+            filename=$(basename "${file}")
+            extension="${filename##*.}
+            if [ "$extension" == js* ]; then
+              output=$(jsdoc2md "${file}")
+            else
+              output=$(jsdoc2md "$file" --configure ./jsdoc2md.json)
+            fi
             if [ ! -z "${output}" ]; then
-              filename=$(basename "${file}")
               touch documentation/${filename}.md
               echo "${output}" > documentation/${filename}.md
               echo "${file} processed"
