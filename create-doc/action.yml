@@ -35,6 +35,7 @@ runs:
           shopt -s extglob
           for file in ./!(node_modules)/**/*.*(js|jsx|ts|tsx)
           do
+            echo "$file"
             filename=$(basename "${file}")
             extension="${filename##*.}"
             if [ "$extension" == js* ]; then
