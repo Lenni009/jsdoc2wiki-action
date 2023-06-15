@@ -17,7 +17,7 @@ runs:
       - name: Setup Env
         run: |
           npm install --save-dev typescript jsdoc-babel @babel/cli @babel/core @babel/preset-env @babel/preset-typescript jsdoc-to-markdown @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread
-          mkdir documentation
+          mkdir wiki
           npm i -g jsdoc-to-markdown
         shell: bash
 
@@ -56,16 +56,12 @@ runs:
             fi
 
             if [ ! -z "${output}" ]; then
-              touch documentation/${filename}.md
-              echo "${output}" > documentation/${filename}.md
+              touch wiki/${filename}.md
+              echo "${output}" > wiki/${filename}.md
               echo "${file} processed"
             fi
           done
         shell: bash
 
       - name: Upload Documentation to Wiki
-        uses: SwiftDocOrg/github-wiki-publish-action@v1
-        with:
-          path: "documentation"
-        env:
-          GH_PERSONAL_ACCESS_TOKEN: ${{ inputs.secret }}
+        uses: Andrew-Chen-Wang/github-wiki-action@v4
