@@ -19,7 +19,6 @@ runs:
 
       - name: Lint JSDoc Comments
         run: |
-          zsh
           documentation lint ./**/*.*(js|ts) --shallow > lintOut.txt
         shell: bash
 
