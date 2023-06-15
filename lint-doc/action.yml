@@ -18,8 +18,7 @@ runs:
       - name: Lint JSDoc Comments
         run: |
           shopt -s globstar
-          shopt -s extglob
-          documentation lint ./**/*.*(js|ts) --shallow > lintOut.txt
+          documentation lint ./**/*.{js,ts} --shallow > lintOut.txt
         shell: bash
 
       - name: Check if lintOut.txt is empty
