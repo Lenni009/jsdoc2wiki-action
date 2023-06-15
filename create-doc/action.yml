@@ -33,9 +33,12 @@ runs:
         run: |
           shopt -s globstar
           shopt -s extglob
-          for file in ./!(node_modules)/**/*(!(*.test|*.spec)).@(js|jsx|ts|tsx)
+          for file in ./!(node_modules)/**/*.@(js|jsx|ts|tsx)
           do
             echo "$file"
+            if [ $filename == *.spec.* -o $filename == *.test.* ]; then
+              continue
+            fi
             filename=$(basename "${file}")
             extension="${filename##*.}"
             if [ "$extension" == js* ]; then
