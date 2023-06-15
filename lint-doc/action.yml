@@ -16,6 +16,7 @@ runs:
         shell: bash
 
       - name: Lint JSDoc Comments
+        run: |
           shopt -s globstar
           shopt -s extglob
           documentation lint ./**/*.*(js|ts) --shallow > lintOut.txt
