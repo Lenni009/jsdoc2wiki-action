@@ -14,12 +14,6 @@ You need to have the wiki enabled in your repo and a wiki homepage already creat
 
 You can enable the wiki functionality in the repo's settings.
 
-### Parameters
-`secret` - This must be specified, otherwise the action can't access your repo's wiki.
-How to generate a key:
-- [Generate new personal access token](https://github.com/settings/tokens/new) with public_repo scope
-- Go to your repo's settings -> Secrets and variables -> Actions, then click the "New repository secret" button. Use `GH_PERSONAL_ACCESS_TOKEN` as the name, and the token itself as value.
-
 ### Usage
 ```yml
 on:
@@ -38,13 +32,11 @@ jobs:
       contents: write
     
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout Repo
         uses: actions/checkout@v3
 
       - name: Create Doc
         uses: Lenni009/jsdoc2wiki-action/create-doc@main
-        with:
-          secret: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
 ```
 
 ## lint-doc
@@ -65,7 +57,7 @@ jobs:
       contents: write
 
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout Repo
         uses: actions/checkout@v3
 
       - name: Lint JSDoc Comments
