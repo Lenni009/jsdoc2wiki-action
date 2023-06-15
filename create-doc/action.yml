@@ -22,16 +22,16 @@ runs:
 
       - name: Build Documentation Files
         run: |
-          find . -type f \( -iname \*.ts -o -iname \*.js \) | while read file
-            do
-              output=$(jsdoc2md "${file}")
-              if [ ! -z "${output}" ]; then
-                filename=$(basename "${file}")
-                touch documentation/${filename}.md
-                echo "${output}" > documentation/${filename}.md
-                echo "${file} processed"
-              fi
-            done
+          for file in $(find . -name "*.js")
+          do
+            output=$(jsdoc2md "${file}")
+            if [ ! -z "${output}" ]; then
+              filename=$(basename "${file}")
+              touch documentation/${filename}.md
+              echo "${output}" > documentation/${filename}.md
+              echo "${file} processed"
+            fi
+          done
         shell: bash
 
       - name: Upload Documentation to Wiki
