@@ -29,11 +29,24 @@ runs:
           fi
         shell: bash
 
+      - name: Glob match
+        uses: tj-actions/glob@v17
+        id: glob
+        with:
+          files: |
+            **/*.js
+            **/*.jsx
+            **/*.ts
+            **/*.tsx
+            !**/*.test.*
+            !**/*.spec.*
+            !node_modules
+
       - name: Build Documentation Files
         run: |
           shopt -s globstar
           shopt -s extglob
-          for file in ./!(node_modules)/**/*.@(js|jsx|ts|tsx)
+          for file in ${{ steps.glob.outputs.paths }}
           do
             echo "$file"
             filename=$(basename "${file}")
