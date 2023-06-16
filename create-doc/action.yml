@@ -65,3 +65,5 @@ runs:
 
       - name: Upload Documentation to Wiki
         uses: Andrew-Chen-Wang/github-wiki-action@v4
+        with:
+          strategy: clone
