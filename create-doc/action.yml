@@ -55,7 +55,6 @@ runs:
             fi
 
             if [ ! -z "${output}" ]; then
-              touch wiki/${file}.md
               echo "${output}" > wiki/${file}.md
               echo "${file} processed"
             fi
