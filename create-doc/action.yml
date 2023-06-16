@@ -14,6 +14,19 @@ runs:
         with:
           node-version: 16
 
+      - name: Gathering Files
+        uses: tj-actions/glob@v17
+        id: glob
+        with:
+          files: |
+            **/*.js
+            **/*.jsx
+            **/*.ts
+            **/*.tsx
+            !**/*.test.*
+            !**/*.config.*
+            !**/*.spec.*
+
       - name: Setup Env
         run: |
           npm install --save-dev typescript jsdoc-babel @babel/cli @babel/core @babel/preset-env @babel/preset-typescript jsdoc-to-markdown @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread
@@ -29,20 +42,6 @@ runs:
           fi
         shell: bash
 
-      - name: Gathering Files
-        uses: tj-actions/glob@v17
-        id: glob
-        with:
-          files: |
-            **/*.js
-            **/*.jsx
-            **/*.ts
-            **/*.tsx
-            !**/*.test.*
-            !**/*.config.*
-            !**/*.spec.*
-            !node_modules
-
       - name: Build Documentation Files
         run: |
           for file in ${{ steps.glob.outputs.paths }}
@@ -56,8 +55,8 @@ runs:
             fi
 
             if [ ! -z "${output}" ]; then
-              touch wiki/${filename}.md
-              echo "${output}" > wiki/${filename}.md
+              touch wiki/${file}.md
+              echo "${output}" > wiki/${file}.md
               echo "${file} processed"
             fi
           done
