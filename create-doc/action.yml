@@ -19,7 +19,8 @@ runs:
         id: glob
         with:
           files: |
-            **/*.[jt]s?
+            **/*.[jt]s
+            **/*.[jt]sx
             !**/*.test.*
             !**/*.spec.*
             !**/*.config.*
