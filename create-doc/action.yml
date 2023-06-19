@@ -1,11 +1,6 @@
 name: Generate JSDoc
 description: Generates markdown files from JSDoc comments and uploads them to the repo's wiki
 
-inputs:
-  secret:
-    description: "Repo access token"
-    required: true
-
 runs:
   using: 'composite'
   steps:
