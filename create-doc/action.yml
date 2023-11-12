@@ -22,7 +22,7 @@ runs:
 
       - name: Setup Env
         run: |
-          npm install --save-dev typescript jsdoc-babel @babel/cli @babel/core @babel/preset-env @babel/preset-typescript jsdoc-to-markdown @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread
+          npm install --save-dev typescript jsdoc-babel @babel/cli @babel/core @babel/preset-env @babel/preset-typescript jsdoc-to-markdown @babel/plugin-transform-class-properties @babel/plugin-transform-object-rest-spread
           mkdir -p wiki
           npm i -g jsdoc-to-markdown
         shell: bash
