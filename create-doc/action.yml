@@ -11,6 +11,7 @@ runs:
           files: |
             **/*.[jt]s
             **/*.[jt]sx
+            !**/.*
             !**/*.test.*
             !**/*.spec.*
             !**/*.config.*
