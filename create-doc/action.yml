@@ -4,11 +4,6 @@ description: Generates markdown files from JSDoc comments and uploads them to th
 runs:
   using: 'composite'
   steps:
-      - name: Setup NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
       - name: Gathering Files
         uses: tj-actions/glob@v17
         id: glob
