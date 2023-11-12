@@ -1,14 +1,14 @@
 {
   "source": {
     "includePattern": ".+\\.ts(doc|x)?$",
-    "excludePattern": ".+\\.(test|spec).ts"
+    "excludePattern": ".+\\.(test|spec).[jt]s"
   },
   "plugins": [
     "plugins/markdown",
     "node_modules/jsdoc-babel"
   ],
   "babel": {
-    "extensions": ["ts", "tsx"],
+    "extensions": ["ts", "tsx", "vue"],
     "ignore": ["**/*.(test|spec).ts", "node_modules"],
     "babelrc": false,
 	"presets": [["@babel/preset-env", { "targets": { "node": true } }], "@babel/preset-typescript"],
