@@ -35,8 +35,3 @@ runs:
           preformatted: true
           refresh-message-position: true
           allow-repeats: true
-
-
-      - if: failure()
-        run: exit 1
-        shell: bash
