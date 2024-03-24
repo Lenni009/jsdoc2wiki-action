@@ -4,11 +4,6 @@ description: Checks the JSDoc comments for errors
 runs:
   using: 'composite'
   steps:
-      - name: Setup NodeJS
-        uses: actions/setup-node@v4
-        with:
-          node-version: 16
-
       - name: Setup Env
         run: |
           npm install -g documentation
